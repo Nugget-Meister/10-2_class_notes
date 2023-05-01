@@ -15,7 +15,7 @@ npm test digitalRoot
 
 The digital root of a non-negative integer `n` is the single-digit value obtained by summing the digits of `n` until a single-digit value is obtained. For example, the digital root of 9875 can be calculated as follows:
 
-```
+```  
 9 + 8 + 7 + 5 = 29
 2 + 9 = 11
 1 + 1 = 2
