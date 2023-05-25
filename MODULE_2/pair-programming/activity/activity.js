@@ -1,18 +1,18 @@
-const coffeeOrders = require("coffe.js")
+const coffeeOrders = require("./data/coffee.js")
 
 function calculateTotalOrders(orders) { 
   let total = 0;
   for (let i = 0 ; i < orders.length; i++) {
-      total = total+1
+      total = total + 1
+    }
       return total
-  }
 }
 
 
 function calculateTotalSales(orders) {
   let totalSales = 0;
-  for (let i = 0; i <= orders.length; i++) { 
-    totalSales + calculateOrderPrice(orders[i]);
+  for (let i = 0; i < orders.length; i++) { 
+    totalSales += calculateOrderPrice(orders[i]);
   }
   return totalSales;
 }
@@ -29,12 +29,15 @@ function calculateOrderPrice(order) {
     case 'Venti':
       basePrice = 3.5;
       break;
+    default:
+      basePrice = 2.0;
+      break;
   }
-  return basePrice + (order.sugar * .5)
+  return order.sugar ? basePrice + (order.sugar * .5) : basePrice
 }
 
 function getCompletedOrders(orders) {
-   orders.filter(order => order.status === 'Completed' && order.completedDate); 
+   return orders.filter(order => order.status == 'Completed' && order.completedDate); 
 }
 
 function getSalesByCoffeeType(orders) {
@@ -59,4 +62,13 @@ function calculateTotalPriceOfCompleteOrders(orders) {
   });
 
   return totalPrice;
+}
+
+module.exports = {
+  calculateTotalOrders,
+  calculateTotalSales,
+  getSalesByCoffeeType,
+  calculateOrderPrice,
+  getCompletedOrders,
+  calculateTotalPriceOfCompleteOrders
 }

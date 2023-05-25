@@ -5,7 +5,7 @@ const {
     getCompletedOrders,
     getSalesByCoffeeType,
     calculateTotalPriceOfCompleteOrders,
-  } = require('../activity'); 
+  } = require('../activity.js'); 
   
   describe('Coffee Shop Functions', () => {
     const coffeeOrders = require("../data/coffee")
