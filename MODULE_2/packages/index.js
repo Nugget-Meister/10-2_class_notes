@@ -2,6 +2,7 @@
 const { hostName }  = require("./os");
 const { checkWord, checkWords } = require("./spell-check")
 
+<<<<<<< HEAD
 function run() {
     // console.log(hostName())
     // all files and functions lead to 'run'
@@ -10,3 +11,14 @@ function run() {
 }
 // this little function starts our entire application
 run();
+=======
+const { hostName } = require("./os")
+const { checkWord, checkWords } = require("./spell-check")
+
+function run(){
+    // console.log(hostName.hostName())
+    checkWords(process.argv[2])
+}
+
+run()
+>>>>>>> 38811ea (5/30/23)

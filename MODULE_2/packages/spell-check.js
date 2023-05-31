@@ -1,4 +1,5 @@
 // This file will be responsible for invoking the `SpellChecker` pacakge and handling our spellcheck logic
+<<<<<<< HEAD
 const SpellChecker = require("simple-spellchecker");
 // this is our function that will make use of our NPM package
 function checkWord(word) { 
@@ -60,3 +61,54 @@ module.exports = {
     checkWord,
     checkWords
 }
+=======
+const SpellChecker = require("simple-spellchecker")
+
+function checkWord(word) {
+
+    SpellChecker.getDictionary("en-us", function (err,dictionary){ 
+        if(err) {
+            console.log("an error")
+            return
+        }
+        const spelledCorrect = dictionary.spellCheck(word)
+        if(!spelledCorrect) {
+            const suggestions = dictionary.getSuggestions(word)
+            console.log(`${word} is spelled incorrectly. Did you mean: `, suggestions.join(" "))
+        
+        } else {
+             console.log(`your word was ${word} it was spelled correctly`)}
+    } )
+
+}
+
+
+function checkWords(sentence){
+    SpellChecker.getDictionary("en-us", function (err,dictionary){ 
+        if(err) {
+            console.log("an error")
+            return
+        }
+    //spleit
+    const sentenceArr = sentence.split(" ");
+    //loop
+    for(let word of sentenceArr) {
+        const spelledCorrect = dictionary.spellCheck(word)
+        if(!spelledCorrect){
+            //do
+            const suggestions = dictionary.getSuggestions(word)
+            console.log(`${word} is spelled incorrectly. Did you mean: `, suggestions.join(" "))
+        
+        } else {
+            console.log(`${word} spelled correct`)
+        }
+    }
+    })
+    
+}
+
+module.exports = {
+    checkWord,
+    checkWords
+}
+>>>>>>> 38811ea (5/30/23)
