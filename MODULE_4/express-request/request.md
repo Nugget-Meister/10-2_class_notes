@@ -22,17 +22,6 @@ By the end of this lesson, you should be able to:
 
 ---
 
-## Big Picture - why is this important?
-"servers are how we have websites in the first place"
--Keith
-
-Half of the internet (probably more to be honest) is SERVERs
-the other half would be clients;
-
-We know how to make client apps using REACT
-
-This is called FULLSTACK 
-
 ## Guiding Questions
 
 - What is express?
@@ -43,7 +32,7 @@ This is called FULLSTACK
 
     
 
-## Today's Lab: [Introduction To Express Response](https://github.com/10-2-pursuit/lab-intro-to-express-response)
+## Today's Lab: [Introduction To Express Response](https://github.com/10-2-pursuit/lab-intro-to-express-request)
 
 ## Today's Pairs
 
