@@ -1,12 +1,38 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_BASE_URL
 
 function BookmarkDetails() {
-  const [bookmark] = useState([]);
+  const [bookmark, setBookmark] = useState([]);
   let { index } = useParams();
+  let navigate = useNavigate();
 
-  useEffect(() => {}, []);
-  const handleDelete = () => {};
+  useEffect(() => {
+    fetch(`${API}/bookmarks/${index}`)
+    .then(response => response.json())
+    .then(bookmark => {
+      console.log(bookmark)
+      setBookmark(bookmark)
+    })
+    .catch(() => navigate("/not-found"))
+  }, [index, navigate]);
+
+  const handleDelete = () => {
+    const httpOptions = { "method" : "DELETE" };
+
+    // we know we need to delete a specific resource
+    fetch(`${API}/bookmarks/${index}`, httpOptions)
+      .then((res) => {
+        console.log(res)
+        alert("hey - bookmark was deleted!  Way to GO!");
+        navigate('/bookmarks');
+      })
+      .catch((err) => console.error(err))
+      // so we need to FETCH to our DB to make 
+        // we need a  DELETE request
+        // then once we've deleted we should reroute the user
+        // and pobably let them know we deleted something
+  };
   return (
     <article>
       <h3>
