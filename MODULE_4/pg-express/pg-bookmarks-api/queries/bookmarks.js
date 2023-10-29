@@ -11,12 +11,52 @@ const getAllBookmarks = async () => {
         return err
     }
 }
-const getOneBookmark = () => {};
+const getOneBookmark = async (id) => {
+    try{
+        const oneBookmark = await db.one("SELECT * FROM bookmarks WHERE id=$1", id)
+        return oneBookmark
+    } catch (error){
+        return error
+    }
+};
+const createBookmark = async (bookmark) =>{
+    try {
+        const createdBookmark = await db.one("INSERT INTO bookmarks (name, url, category, is_favorite) VALUES ($1, $2, $3, $4) RETURNING *", [bookmark.name, bookmark.url, bookmark.category, bookmark.is_favorite])
+        return createdBookmark
+    } catch (error) {
+        return error
+    }
+}
 
-const deleteBookmark = () => {};
+const deleteBookmark = async (id) => {
+    try {
+        const deletedBookmark = await db.one(
+            "DELETE from bookmarks WHERE id = $1 RETURNING *",
+            id
+        )
+        return deletedBookmark
+    } catch(error) {
+        return error
+    }
+};
 
-const updateBookmark = () => {};
+const updateBookmark = async (id, bookmark) => {
+    try {
+        const { name, url, category, is_favorite } = bookmark;
+        const updatedBookmark = await db.one(
+            "UPDATE bookmarks SET name=$1, url=$2,category=$3, is_favorite=$4 WHERE id=$5 RETURNING *",
+            [name, url, category, is_favorite, id]
+        );
+        return updatedBookmark
+    } catch(err) {
+        return err
+    }
+};
 
 module.exports = {
-    getAllBookmarks
+    getAllBookmarks,
+    getOneBookmark,
+    createBookmark,
+    deleteBookmark,
+    updateBookmark
 }
